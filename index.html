@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Here and There Car Wash</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    header {
+      background-color: #004a99;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+    nav a {
+      font-weight: 600;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 74, 153, 0.6);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+    .hero-content h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      background-color: #ff7f50;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #ff5a24;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #004a99;
+      text-align: center;
+    }
+
+    .pricing-img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-table {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .pricing-card {
+      background: #0066cc;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+    .pricing-card:hover {
+      background-color: #005bb5;
+    }
+    .pricing-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ffecdf;
+    }
+    .pricing-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+      color: #ffecdf;
+    }
+    .pricing-card ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .add-ons {
+      text-align: center;
+    }
+    .add-ons ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem auto;
+      max-width: 600px;
+    }
+    .add-ons li {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-weight: 500;
+    }
+
+    .estimate {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #ff7f50;
+      margin: 0 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .pricing-table {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+    }
+    .image-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.image-center img {
+  max-width: 100%;
+  border-radius: 12px;
+  height: auto;
+}
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #1f1f1f;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: #fff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #555;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #bbb;
+}
+
+.btn-primary {
+  align-self: flex-start;
+  background-color: #ff7f50;
+  color: white;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff5a24;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Here and There Car Wash</h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" role="banner" aria-label="Hero section">
+    <div class="hero-content">
+      <h2>Clean Cars, Happy Drivers</h2>
+      <p>Professional mobile detailing tailored to your needs and location.</p>
+      <a href="#contact" class="btn-primary">Book Now</a>
+    </div>
+  </section>
+
+  <section id="pricing" class="section" aria-labelledby="pricing-heading">
+  <h3 id="pricing-heading">Detailing Packages & Pricing</h3>
+
+  <div class="image-center">
+  <img 
+    src="482329841_18342187732156933_1823701128035494912_n.jpg" 
+    alt="Team washing a car at Here and There Car Wash"
+  />
+</div>
+
+    <div class="pricing-table">
+      <div class="pricing-card">
+        <h4>Exterior Detail</h4>
+        <ul>
+          <li>Small Vehicle: $30</li>
+          <li>Medium Vehicle: $40</li>
+          <li>Large Vehicle: $50</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <h4>Interior Detail</h4>
+        <ul>
+          <li>Small Vehicle: $30</li>
+          <li>Medium Vehicle: $35</li>
+          <li>Large Vehicle: $40</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <h4>Full Bundle (Interior + Exterior)</h4>
+        <p>Condition-based pricing</p>
+        <ul>
+          <li>Small Vehicle: $50</li>
+          <li>Medium Vehicle: $60</li>
+          <li>Large Vehicle: $70</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="add-ons">
+      <h3>Add-On Services</h3>
+      <ul>
+        <li>$10 – Trunk Cleaning</li>
+        <li>$10 – Stain Removal</li>
+        <li>$5 – Headliner/Sunroof Cleaning</li>
+        <li>$5 – Debugging (Front Grill/Water Marks)</li>
+        <li>$3 – Tire Shine</li>
+      </ul>
+    </div>
+
+    <div class="estimate">
+      <h4>Need a Custom Estimate?</h4>
+      <p>Vehicle condition may impact pricing. Share your car's condition and get a personalized quote.</p>
+      <a href="estimate.html" class="btn-primary">Get an Estimate</a>
+      <p style="margin-top: 1rem;">See examples of dirtiness levels that may affect your quote.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section" aria-labelledby="contact-heading">
+  <h3 id="contact-heading" style="text-align: center; color: #87b5ff;">Contact Us</h3>
+
+  <form action="https://formsubmit.co/hereandtherecarwash@gmail.com" method="POST" class="contact-form">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+  <input type="hidden" name="_subject" value="New message from Contact Form">
+
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required placeholder="Your name" />
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" required placeholder="Tell us how we can help"></textarea>
+
+  <button type="submit" class="btn-primary">Send Message</button>
+</form>
+
+</section>
+
+  <footer>
+    <p>&copy; 2025 Here and There Car Wash</p>
+    <p>
+      <a href="mailto:info@hereandtherecarwash.com">info@hereandtherecarwash.com</a> |
+      <a href="tel:+1234567890">+1 (234) 567-890</a>
+    </p>
+    <p>
+      <a href="#" aria-label="Facebook">Facebook</a> |
+      <a href="#" aria-label="Twitter">Twitter</a> |
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </p>
+  </footer>
+</body>
+</html>
